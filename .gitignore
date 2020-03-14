@@ -1,13 +1,24 @@
 twitter_auth.txt
 oldTwitterFollows
 
-aws/
-graphs/countries/
-graphs/full_active/
-graphs/full_deaths/
-graphs/full_period/
-graphs/last_day/
-graphs/last_month/
-graphs/last_week/
-graphs/mortality/
+aws/*
+graphs/countries/*
+graphs/full_active/*
+graphs/full_deaths/*
+graphs/full_period/*
+graphs/last_day/*
+graphs/last_month/*
+graphs/last_week/*
+graphs/mortality/*
 
+
+# exception to the rule
+!aws/.gitkeep
+!graphs/countries/.gitkeep
+!graphs/full_active/.gitkeep
+!graphs/full_deaths/.gitkeep
+!graphs/full_period/.gitkeep
+!graphs/last_day/.gitkeep
+!graphs/last_month/.gitkeep
+!graphs/last_week/.gitkeep
+!graphs/mortality/.gitkeep
