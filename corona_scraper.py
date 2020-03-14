@@ -13,12 +13,12 @@ def main():
     DATA_FILE_NAME = "current_data.csv"
 
     for i in range(0, STOP_COLLECTING_AFTER):
-        try: 
+        try:
             soup_object = get_soup_object(WEBSITE)
             total_data = pull_data_from_soup(soup_object)
             append_data(total_data, DATA_FILE_NAME)
             time.sleep(MINUTES_BETWEEN_PULLS*60)
-        except:           
+        except:
             print("Error Pulling Data From Source")
             time.sleep(300)
 

@@ -90,10 +90,10 @@ def get_authenticated_api():
 
     f=open("twitter_auth.txt","r")
     lines=f.readlines()
-    cus_key=lines[0]
-    cus_secret=lines[1]
-    acc_token=lines[2]
-    acc_secret=lines[3]
+    cus_key=lines[0].rstrip()
+    cus_secret=lines[1].rstrip()
+    acc_token=lines[2].rstrip()
+    acc_secret=lines[3].rstrip()
 
     auth_keys = { 
         "consumer_key"        : cus_key,
