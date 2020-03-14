@@ -1,0 +1,14 @@
+twitter_auth.txt
+current_data.csv
+oldTwitterFollows
+
+aws/
+graphs/countries/
+graphs/full_active/
+graphs/full_deaths/
+graphs/full_period/
+graphs/last_day/
+graphs/last_month/
+graphs/last_week/
+graphs/mortality/
+
