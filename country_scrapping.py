@@ -3,9 +3,6 @@ import datetime
 import time
 import tweepy
 import pandas as pd
-import geopandas
-import geoplot
-import mapclassify
 import math
 import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
@@ -20,7 +17,7 @@ def main():
 
     for i in range(0, STOP_COLLECTING_AFTER):
         date = datetime.datetime.now()
-        while (datetime.datetime.now().minute != 0):
+        while (date.minute != 0):
             time.sleep(5)
         try: 
             soup_object = get_soup_object(WEBSITE)
