@@ -106,7 +106,9 @@ def update_and_wait(api, graph):
 		print("Error Posting to Twitter")
 
 def current_time_string():
-	return str(datetime.datetime.now())
+
+    time_now = str(datetime.datetime.now()) 
+    return f"{time_now.year}-{time_now.month}-{time_now.day} {time_now.hour}:{time_now.minute}:{time_now.second}"
 
 def get_total_cases():
 	data_file = "current_data.csv"
