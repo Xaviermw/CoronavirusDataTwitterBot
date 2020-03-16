@@ -106,7 +106,7 @@ def update_and_wait(graph):
 
 def current_time_string():
     time_now = datetime.datetime.now() 
-    return f"{time_now.year}-{time_now.month}-{time_now.day} {time_now.hour}:{time_now.minute}:{time_now.second}"
+    return f"{time_now.year}-{time_now.month:02d}-{time_now.day:02d} {time_now.hour:02d}:{time_now.minute:02d}:{time_now.second:02d}"
 
 def get_total_cases():
         data_file = "current_data.csv"

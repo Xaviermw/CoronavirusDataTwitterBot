@@ -12,12 +12,10 @@ from csv import writer
 
 def main():
 
-    MINUTES_BETWEEN_PULLS = 1
-    STOP_COLLECTING_AFTER = 10080
     WEBSITE = "https://www.worldometers.info/coronavirus/"
     DATA_FILE_NAME = "country_data.csv"
 
-    for i in range(0, STOP_COLLECTING_AFTER):
+    while(True):
         date = datetime.datetime.now()
         while (datetime.datetime.now().minute != 0):
             time.sleep(5)
@@ -115,8 +113,8 @@ def get_total_cases():
 
 def current_time_string():
 
-    time_now = datetime.datetime.now() 
-    return f"{time_now.year}-{time_now.month}-{time_now.day} {time_now.hour}:{time_now.minute}:{time_now.second}"
+    time_now = datetime.datetime.now()
+    return f"{time_now.year}-{time_now.month:02d}-{time_now.day:02d} {time_now.hour:02d}:{time_now.minute:02d}:{time_now.second:02d}"
 
 def post_twitter(graph):
 
