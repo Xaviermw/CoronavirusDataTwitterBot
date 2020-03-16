@@ -84,6 +84,7 @@ def generate_world_map(case_table, country_lookup, date, metric, plot_title, col
     graph_name = f"graphs/countries/{metric}/{date.year}-{date.month}-{date.day}-{date.hour}.png"
     plt.title(f"{plot_title} Coronovirus Cases as of {date.year}-{date.month}-{date.day} {date.hour}:00 (EST)", fontdict={'fontsize' : 30})
     world_heat_map.get_figure().savefig(graph_name)
+    plt.close()
     return graph_name
 
 def get_authenticated_api():
@@ -114,13 +115,13 @@ def get_total_cases():
 
 def current_time_string():
 
-    time_now = str(datetime.datetime.now()) 
+    time_now = datetime.datetime.now() 
     return f"{time_now.year}-{time_now.month}-{time_now.day} {time_now.hour}:{time_now.minute}:{time_now.second}"
 
 def post_twitter(graph):
 
     api = get_authenticated_api()
-    api.update_with_media(graph, status = f"{'{:.7f}'.format(get_total_cases()*100/7530000000)}% of the world has gotten Coronavirus as of {current_time_string()}")
+    api.update_with_media(graph, status = f"{'{:.7f}'.format(get_total_cases()*100/7530000000)}% of the world has reportedly had Coronavirus as of {current_time_string()}")
 
 if __name__ == "__main__":
     main()
