@@ -61,7 +61,7 @@ def create_graphs(data_file):
 
 def create_graph(corona_subset, total_display_dictionary, folder, date_format, xlab, ylab, title, interval):
 	plt.figure(figsize=(12,5))
-	dates = [dateutil.parser.parse(s) for s in corona_subset['time']]
+        dates = [dateutil.parser.parse(s) for s in corona_subset['time']]
 	plt.xticks(rotation=25)
 	plt.title(title)
 	ax = plt.gca()
@@ -70,9 +70,9 @@ def create_graph(corona_subset, total_display_dictionary, folder, date_format, x
 	ax.set_ylabel(ylab)
 	xfmt = md.DateFormatter(date_format)
 	ax.xaxis.set_major_formatter(xfmt)
-	for key in total_display_dictionary:
-		values = total_display_dictionary[key]
-		plt.plot(dates, corona_subset[key], "-", color=values[0], label=values[1])
+        for key in total_display_dictionary:
+            values = total_display_dictionary[key]
+	    plt.plot(corona_subset[dates, corona_subset[key], "-", color=values[0], label=values[1])
 	plt.legend(bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
 	plt.tight_layout()
 	image_name = f"graphs/{folder}/{current_time_string().replace(' ', '').replace('.', '').replace(':', '') .replace('-', '')}.png"
