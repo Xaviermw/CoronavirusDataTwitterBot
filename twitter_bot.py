@@ -7,7 +7,7 @@ import dateutil
 import datetime
 import time
 from datetime import timedelta
- 
+
 def main():
 
 	POSTS_TO_RUN_FOR = 48 * 365 * 10
@@ -79,35 +79,36 @@ def create_graph(corona_subset, total_display_dictionary, folder, date_format, x
 	plt.savefig(image_name)
 	return image_name
 
-def get_authenticated_api():	
-    f=open("twitter_auth.txt","r")
-    lines=f.readlines()
-    cus_key=lines[0].rstrip()
-    cus_secret=lines[1].rstrip()
-    acc_token=lines[2].rstrip()
-    acc_secret=lines[3].rstrip()
+def get_authenticated_api():
 
-    auth_keys = { 
-        "consumer_key"        : cus_key,
-        "consumer_secret"     : cus_secret,
-        "access_token"        : acc_token,   
-        "access_token_secret" : acc_secret
-    }   
+	f=open("twitter_auth.txt","r")
+	lines=f.readlines()
+	cus_key=lines[0]
+	cus_secret=lines[1]
+	acc_token=lines[2]
+	acc_secret=lines[3]
 
-
-    auth = tweepy.OAuthHandler( auth_keys['consumer_key'], auth_keys['consumer_secret'])
-    auth.set_access_token( auth_keys['access_token'], auth_keys['access_token_secret'])
-    api = tweepy.API(auth)
-    return api
+	auth_keys = { 
+		"consumer_key"        : cus_key,
+		"consumer_secret"     : cus_secret,
+		"access_token"        : acc_token,   
+		"access_token_secret" : acc_secret
+	}   
+	auth = tweepy.OAuthHandler( auth_keys['consumer_key'], auth_keys['consumer_secret'])
+	auth.set_access_token( auth_keys['access_token'], auth_keys['access_token_secret'])
+	api = tweepy.API(auth)
+	return api
 
 def update_and_wait(api, graph):
-    try:
-        api.update_with_media(graph, status = f"{format (get_total_cases(), ',d')} #Coronavirus cases as of {current_time_string()}")
-    except:	
-        print("Error Posting to Twitter")
+	try:
+		api.update_with_media(graph, status = f"{format (get_total_cases(), ',d')} #Coronavirus cases as of {current_time_string()}")
+	except:	
+		print("Error Posting to Twitter")
 
 def current_time_string():
-	return str(datetime.datetime.now())
+
+    time_now = str(datetime.datetime.now()) 
+    return f"{time_now.year}-{time_now.month}-{time_now.day} {time_now.hour}:{time_now.minute}:{time_now.second}"
 
 def get_total_cases():
 	data_file = "current_data.csv"
@@ -141,4 +142,4 @@ def run_analysis(posts_to_run_for, data_file):
 		post_graphs(api, full, day, week, month, mortality, all_deaths, all_active)
 
 if __name__ == "__main__":
-    main()
+	main()
