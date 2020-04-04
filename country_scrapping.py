@@ -1,3 +1,4 @@
+import sys
 import requests
 import datetime
 import time
@@ -17,7 +18,7 @@ def main():
 
     while(True):
         date = datetime.datetime.now()
-        while (datetime.datetime.now().minute != 0):
+        while(datetime.datetime.now().minute != 0):
             time.sleep(5)
         try: 
             soup_object = get_soup_object(WEBSITE)
@@ -30,7 +31,8 @@ def main():
             active_graph = generate_world_map(corona_stats, country_lookup, date, "ActiveCases", "Active", "Blues")
             post_twitter(active_graph)
         except:           
-            print("Error Pulling Data From Source")
+            e = sys.exc_info()
+            print("Error: ",e)
         time.sleep(60*5)
 
 def get_soup_object(website):
@@ -40,15 +42,12 @@ def get_soup_object(website):
 
 def pull_data(soup_object):
 
-    table = soup_object.find(id="main_table_countries")
+    table = soup_object.find(id="main_table_countries_today")
     rows = len(table.find_all('tr'))
-    corona_table = pd.DataFrame(columns=range(0,9), index = range(0, rows-1))
+    print(rows)
+    corona_table = pd.DataFrame(columns=range(0,12), index = range(0, rows-1))
 
-    header_list = []
-    for header in table.find_all('th'):
-        header_list.append(header.get_text())
-
-    corona_table.set_axis(header_list, axis=1, inplace=True)
+    corona_table.columns = ["Country,Other","TotalCases","NewCases","TotalDeaths","NewDeaths","TotalRecovered","ActiveCases","Serious","PerCapitaCases", "PerCapitaDeaths","TotalTests", "TestsPerMillions"]
 
     row_marker = 0
     for row in table.find_all('tr')[1:rows]:
@@ -58,12 +57,13 @@ def pull_data(soup_object):
             corona_table.iat[row_marker,column_marker] = column.get_text()
             column_marker += 1
         row_marker += 1
-
+       
     return corona_table
 
 def generate_world_map(case_table, country_lookup, date, metric, plot_title, color):
     world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
     country_counts = []
+
     for index, row in country_lookup.iterrows():
         if row['data_country'] == "NO CASES":
             country_counts.append(0)

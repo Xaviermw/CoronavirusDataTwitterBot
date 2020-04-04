@@ -119,7 +119,7 @@ def post_graphs(full, day, week, month, mortality, all_deaths, all_active):
         update_and_wait(full)
         while datetime.datetime.now().minute != 20:
                 time.sleep(5)
-        update_and_wait(mortality)
+        #update_and_wait(mortality)
         while datetime.datetime.now().minute != 30:
                 time.sleep(5)
         update_and_wait(all_deaths)
@@ -128,7 +128,7 @@ def post_graphs(full, day, week, month, mortality, all_deaths, all_active):
         update_and_wait(all_active)
         while datetime.datetime.now().minute != 50:
                 time.sleep(5)
-        update_and_wait(day)
+        #update_and_wait(day)
 
         # update_and_wait(api, week)
         # update_and_wait(api, month)

@@ -2,7 +2,6 @@ twitter_auth.txt
 oldTwitterFollows
 
 aws/*
-graphs/countries/*
 graphs/full_active/*
 graphs/full_deaths/*
 graphs/full_period/*
